@@ -1,0 +1,79 @@
+[project]
+name = "earthdata-downloader"
+description = "Download data from NASA Earthdata"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE.txt" }
+dynamic = ["version"]
+keywords = [
+  "earth observation",
+  "nasa",
+  "earthdata",
+  "modis",
+]
+authors = [
+  { name = "John Gerrard Holland", email = "john_holland1@brown.edu" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: GIS",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3 :: Only",
+]
+dependencies = [
+  "rasterio >=1.3.0, <2.0.0",
+  "numpy >=1.26, <3.0.0",
+  "requests >=2.32.0, <3.0.0",
+  "typer >=0.12.3, <1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "check-manifest",
+  "black",
+  "earthdata-downloader[test]",
+]
+test = [
+  "coverage",
+  "pytest >=7.4.4, <8.0.0",
+  "pytest-xdist >=3.6.0, <4.0.0",
+  "pytest-cov >=5.0.0, <6.0.0",
+  "requests_mock >=1.12.0, <2.0.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/brown-ccv/earthdata-downloader"
+"Bug Reports" = "https://github.com/brown-ccv/earthdata-downloader/issues"
+"Source" = "https://github.com/brown-ccv/earthdata-downloader"
+
+[project.scripts]
+earthdata-downloader = "earthdata_downloader.app:app"
+
+[tool.setuptools]
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[build-system]
+requires = ["setuptools>=43.0.0", "setuptools_scm>=8", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+
+[tool.pytest.ini_options]
+markers = [
+  "smoke: mark a test as a smoke test.",
+  "slow: mark tests that run slowly.",
+]
+addopts = ["--doctest-modules"]
+
+[tool.coverage.run]
+omit = []
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+
+[tool.isort]
+profile = "black"
