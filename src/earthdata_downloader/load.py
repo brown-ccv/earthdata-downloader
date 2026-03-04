@@ -1,7 +1,7 @@
-from dataclasses import dataclass
 import io
 import logging
 from collections import namedtuple
+from dataclasses import dataclass
 from enum import Enum
 
 import numpy as np

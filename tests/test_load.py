@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest
 import requests_mock
 
-from earthdata_downloader.load import load, ImageType, Satellite, DataSet
+from earthdata_downloader.load import DataSet, ImageType, Satellite, load
 
 ExampleDataSetBeaufortSea = DataSet(
     datetime="2016-07-01T00:00:00Z",

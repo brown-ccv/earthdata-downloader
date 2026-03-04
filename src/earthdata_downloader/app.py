@@ -7,11 +7,8 @@ from typing import Annotated
 import typer
 
 from earthdata_downloader.bbox import BoundingBox, BoundingBoxParser
-from earthdata_downloader.load import (
-    ImageType,
-    Satellite,
-    ExampleDataSetBeaufortSea as ExampleDataSet,
-)
+from earthdata_downloader.load import ExampleDataSetBeaufortSea as ExampleDataSet
+from earthdata_downloader.load import ImageType, Satellite
 from earthdata_downloader.load import load as load_
 
 _logger = logging.getLogger(__name__)
