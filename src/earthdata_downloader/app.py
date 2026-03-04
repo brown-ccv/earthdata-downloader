@@ -16,9 +16,8 @@ from earthdata_downloader.load import load as load_
 
 _logger = logging.getLogger(__name__)
 
-name = "earthdata-downloader"
 app = typer.Typer(
-    name=name,
+    name="earthdata-downloader",
     add_completion=False,
     help="Download data from NASA Earthdata.",
 )
