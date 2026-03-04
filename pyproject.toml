@@ -20,6 +20,7 @@ keywords = [
 
 authors = [
   { name = "Brown CCV", email = "ccv@brown.edu" },
+  { name = "Ellen Buckley", email = "ellen_buckley@brown.edu" },
 ]
 
 maintainers = []
