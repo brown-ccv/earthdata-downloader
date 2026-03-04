@@ -5,7 +5,6 @@ import requests_mock
 
 from earthdata_downloader.load import load, ImageType, Satellite, DataSet
 
-
 ExampleDataSetBeaufortSea = DataSet(
     datetime="2016-07-01T00:00:00Z",
     wrap="day",
