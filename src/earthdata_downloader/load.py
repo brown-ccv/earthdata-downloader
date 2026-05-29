@@ -163,23 +163,26 @@ def load(
 ) -> LoadResult:
     """Load an image from the NASA Worldview Snapshots API"""
 
-    match (satellite, kind):
-        case (Satellite.terra, ImageType.truecolor):
+    match (satellite, kind, crs):
+        case (Satellite.terra, ImageType.truecolor, _):
             layers = "MODIS_Terra_CorrectedReflectance_TrueColor"
-        case (Satellite.terra, ImageType.cloud):
+        case (Satellite.terra, ImageType.cloud, _):
             layers = "MODIS_Terra_Cloud_Fraction_Day"
-        case (Satellite.terra, ImageType.bands721):
+        case (Satellite.terra, ImageType.bands721, _):
             layers = "MODIS_Terra_CorrectedReflectance_Bands721"
-        case (Satellite.aqua, ImageType.truecolor):
+        case (Satellite.aqua, ImageType.truecolor, _):
             layers = "MODIS_Aqua_CorrectedReflectance_TrueColor"
-        case (Satellite.aqua, ImageType.cloud):
+        case (Satellite.aqua, ImageType.cloud, _):
             layers = "MODIS_Aqua_Cloud_Fraction_Day"
-        case (Satellite.aqua, ImageType.bands721):
+        case (Satellite.aqua, ImageType.bands721, _):
             layers = "MODIS_Aqua_CorrectedReflectance_Bands721"
-        case (_, ImageType.landmask):
+        case (_, ImageType.landmask, "EPSG:3413"):
             layers = "OSM_Land_Mask"
+        case (_, ImageType.landmask, "EPSG:3031"):
+            layers = "SCAR_Land_Mask"
         case _:
-            msg = "satellite=%s and image kind=%s not supported" % (satellite, kind)
+            msg = "satellite=%s and image kind=%s and CRS=%s not supported" % (
+                satellite, kind, crs)
             raise NotImplementedError(msg)
 
     width, height = _get_width_height(bbox, scale)

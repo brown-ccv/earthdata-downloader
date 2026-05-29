@@ -21,12 +21,53 @@ ExampleDataSetBeaufortSea = DataSet(
     ts=1683675557694,
 )
 
+ExampleDataSetWeddellSea = DataSet(
+    datetime="2025-12-09T00:00:00Z",
+    wrap="day",
+    satellite=Satellite.terra,
+    kind=ImageType.landmask,
+    scale=10000,
+    bbox=(
+        -1279248,
+        904965,
+        -679248,
+        1504965,
+    ),
+    crs="EPSG:3031",
+    ts=1683675557694,
+)
+
+ExampleDataSetAntarctica = DataSet(
+    datetime="2025-12-09T00:00:00Z",
+    wrap="day",
+    satellite=Satellite.terra,
+    kind=ImageType.landmask,
+    scale=100000,
+    bbox=(
+        -5000000,
+        -5000000,
+        5000000,
+        5000000,
+    ),
+    crs="EPSG:3031",
+    ts=1683675557694,
+)
+
 
 @pytest.mark.slow
 @pytest.mark.parametrize("satellite", Satellite)
 @pytest.mark.parametrize("kind", ImageType)
-def test_load_runs_without_crashing_for_different_parameters(kind, satellite):
-    load(kind=kind, satellite=satellite, scale=100000)
+@pytest.mark.parametrize("dataset", [ExampleDataSetBeaufortSea, ExampleDataSetWeddellSea, ExampleDataSetAntarctica], ids=["beaufort-sea", "weddell-sea", "antarctica"])
+def test_load_runs_without_crashing_for_different_parameters(kind, satellite, dataset):
+    load(kind=kind,
+         satellite=satellite,
+         scale=dataset.scale,
+         datetime=dataset.datetime,
+         wrap=dataset.wrap,
+         bbox=dataset.bbox,
+         crs=dataset.crs,
+         ts=dataset.ts,
+         )
 
 
 def test_error_on_empty_file():
