@@ -1,8 +1,6 @@
 import ast
 from typing import NamedTuple
 
-import click
-
 
 class BoundingBox(NamedTuple):
     x1: int | float
@@ -11,11 +9,11 @@ class BoundingBox(NamedTuple):
     y2: int | float
 
 
-class BoundingBoxParser(click.ParamType):
+class BoundingBoxParser:
     name = "X1,Y1,X2,Y2"
 
     @classmethod
-    def convert(self, value: str | BoundingBox, param=None, ctx=None):
+    def convert(cls, value: str | BoundingBox):
         """
         Convert a string compatible with the interface for a BoundingBox into a BoundingBox instance
 

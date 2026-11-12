@@ -54,7 +54,10 @@ def load(
     kind: ImageType = ExampleDataSet.kind,
     bbox: Annotated[
         BoundingBox,
-        typer.Option(click_type=BoundingBoxParser()),
+        typer.Option(
+            parser=BoundingBoxParser.convert,
+            metavar=BoundingBoxParser.name,
+        ),
     ] = ExampleDataSet.bbox,
     scale: Annotated[
         int, typer.Option(help="size of a pixel in units of the bounding box")
